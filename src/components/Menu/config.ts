@@ -1,136 +1,217 @@
-import { MenuEntry } from '@pancakeswap/uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { MenuEntry } from '@pantherswap-libs/uikit'
 
-const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const config: MenuEntry[] = [
   {
-    label: t('Home'),
+    label: 'Home',
     icon: 'HomeIcon',
-    href: '/',
+    href: 'https://pantherswap.com/',
   },
   {
-    label: t('Trade'),
+    label: 'Trade',
     icon: 'TradeIcon',
+    initialOpenState: true,
     items: [
       {
-        label: t('Exchange'),
-        href: 'https://exchange.pancakeswap.finance/#/swap',
+        label: 'Exchange',
+        href: '/swap',
       },
       {
-        label: t('Liquidity'),
-        href: 'https://exchange.pancakeswap.finance/#/pool',
+        label: 'Liquidity',
+        href: '/pool',
       },
       {
-        label: t('LP Migration'),
-        href: 'https://v1exchange.pancakeswap.finance/#/migrate',
-      },
-      {
-        label: t('V1 Liquidity (Old)'),
-        href: 'https://v1exchange.pancakeswap.finance/#/pool',
+        label: 'LP Migration',
+        href: 'https://docs.pantherswap.com/amm-launch',
       },
     ],
   },
   {
-    label: t('Farms'),
+    label: 'Farms',
     icon: 'FarmIcon',
-    href: '/farms',
+    href: 'https://pantherswap.com/farms',
   },
   {
-    label: t('Pools'),
+    label: 'Pools',
     icon: 'PoolIcon',
-    href: '/pools',
+    href: 'https://pantherswap.com/pools',
   },
   {
-    label: t('Prediction (BETA)'),
-    icon: 'PredictionsIcon',
-    href: '/prediction',
+    label: 'Jungles',
+    icon: 'JungleIcon',
+    href: 'https://pantherswap.com/jungles',
   },
   {
-    label: t('Lottery'),
+    label: 'Lottery',
     icon: 'TicketIcon',
-    href: '/lottery',
+    href: 'https://pantherswap.com/lottery',
   },
   {
-    label: t('Collectibles'),
-    icon: 'NftIcon',
-    href: '/collectibles',
+    label: 'IPO',
+    icon: 'IfoIcon',
+    href: 'https://pantherswap.com/ipo',
   },
   {
-    label: t('Team Battle'),
-    icon: 'TeamBattleIcon',
-    href: '/competition',
+    label: 'Referrals',
+    icon: 'ReferralIcon',
+    href: 'https://pantherswap.com/referrals',
   },
   {
-    label: t('Teams & Profile'),
-    icon: 'GroupsIcon',
+    label: 'Audits',
+    icon: 'ShieldIcon',
+    href: 'https://docs.pantherswap.com/security/audits',
+  },
+  {
+    label: 'Features',
+    icon: 'FeatureIcon',
     items: [
       {
-        label: t('Leaderboard'),
-        href: '/teams',
+        label: 'Automatic LP',
+        href: 'https://docs.pantherswap.com/tokenomics/automatic-liquidity',
       },
       {
-        label: t('Task Center'),
-        href: '/profile/tasks',
+        label: 'Automatic Burning',
+        href: 'https://docs.pantherswap.com/tokenomics/automatic-burning',
       },
       {
-        label: t('Your Profile'),
-        href: '/profile',
+        label: 'Harvest Lockup',
+        href: 'https://docs.pantherswap.com/tokenomics/harvest-lockup',
+      },
+      {
+        label: 'Anti-Whale',
+        href: 'https://docs.pantherswap.com/tokenomics/anti-whale',
       },
     ],
   },
+  // {
+  //   label: 'Price Charts',
+  //   icon: 'ChartIcon',
+  //   items: [
+  //     {
+  //       label: 'DexGuru',
+  //       href: 'https://dex.guru/token/0x1f546ad641b56b86fd9dceac473d1c7a357276b7-bsc',
+  //     },
+  //     {
+  //       label: 'PooCoin',
+  //       href: 'https://poocoin.app/tokens/0x1f546ad641b56b86fd9dceac473d1c7a357276b7',
+  //     },
+  //     {
+  //       label: 'BoggedFinance',
+  //       href: 'https://charts.bogged.finance/?token=0x1f546aD641B56b86fD9dCEAc473d1C7a357276B7',
+  //     },
+  //     {
+  //       label: 'DexTools',
+  //       href: 'https://www.dextools.io/app/pancakeswap/pair-explorer/0xecc11a78490866e0073ebc4a4dcb6f75673c8685',
+  //     },
+  //   ],
+  // },
   {
-    label: t('Info'),
+    label: 'Listings',
+    icon: 'ListingIcon',
+    items: [
+      {
+        label: 'BscScan',
+        href: 'https://bscscan.com/token/0x1f546ad641b56b86fd9dceac473d1c7a357276b7',
+      },
+      {
+        label: 'DappRadar',
+        href: 'https://dappradar.com/binance-smart-chain/defi/pantherswap',
+      },
+      {
+        label: 'CoinGecko',
+        href: 'https://www.coingecko.com/en/coins/pantherswap',
+      },
+      {
+        label: 'CoinMarketCap',
+        href: 'https://coinmarketcap.com/currencies/pantherswap/',
+      },
+      {
+        label: 'LiveCoinWatch',
+        href: 'https://www.livecoinwatch.com/price/PantherSwap-PANTHER',
+      },
+      {
+        label: 'Vfat',
+        href: 'https://vfat.tools/bsc/panther',
+      },
+    ],
+  },
+  // {
+  //   label: 'NFT',
+  //   icon: 'NftIcon',
+  //   href: 'https://pancakeswap.finance/nft',
+  // },
+  // {
+  //   label: 'Teams & Profile',
+  //   icon: 'GroupsIcon',
+  //   calloutClass: 'rainbow',
+  //   items: [
+  //     {
+  //       label: 'Leaderboard',
+  //       href: 'https://pancakeswap.finance/teams',
+  //     },
+  //     {
+  //       label: 'Task Center',
+  //       href: 'https://pancakeswap.finance/profile/tasks',
+  //     },
+  //     {
+  //       label: 'Your Profile',
+  //       href: 'https://pancakeswap.finance/profile',
+  //     },
+  //   ],
+  // },
+  {
+    label: 'Analytics',
     icon: 'InfoIcon',
     items: [
       {
-        label: t('Overview'),
-        href: 'https://pancakeswap.info',
+        label: 'Overview',
+        href: 'https://pantherswap.info',
       },
       {
-        label: t('Tokens'),
-        href: 'https://pancakeswap.info/tokens',
+        label: 'Tokens',
+        href: 'https://pantherswap.info/tokens',
       },
       {
-        label: t('Pairs'),
-        href: 'https://pancakeswap.info/pairs',
+        label: 'Pairs',
+        href: 'https://pantherswap.info/pairs',
       },
       {
-        label: t('Accounts'),
-        href: 'https://pancakeswap.info/accounts',
+        label: 'Accounts',
+        href: 'https://pantherswap.info/accounts',
       },
     ],
   },
+  // {
+  //   label: 'IFO',
+  //   icon: 'IfoIcon',
+  //   href: 'https://pancakeswap.finance/ifo',
+  // },
   {
-    label: t('IFO'),
-    icon: 'IfoIcon',
-    href: '/ifo',
-  },
-  {
-    label: t('More'),
+    label: 'More',
     icon: 'MoreIcon',
     items: [
+      // {
+      //   label: 'Voting',
+      //   href: 'https://voting.pancakeswap.finance',
+      // },
       {
-        label: t('Contact'),
-        href: 'https://docs.pancakeswap.finance/contact-us',
+        label: 'Github',
+        href: 'https://github.com/pantherswap',
       },
       {
-        label: t('Voting'),
-        href: 'https://voting.pancakeswap.finance',
+        label: 'Docs',
+        href: 'https://docs.pantherswap.com',
       },
       {
-        label: t('Github'),
-        href: 'https://github.com/pancakeswap',
+        label: 'Roadmap',
+        href: 'https://docs.pantherswap.com/roadmap',
       },
       {
-        label: t('Docs'),
-        href: 'https://docs.pancakeswap.finance',
+        label: 'Blog',
+        href: 'https://pantherswap.medium.com',
       },
       {
-        label: t('Blog'),
-        href: 'https://pancakeswap.medium.com',
-      },
-      {
-        label: t('Merch'),
-        href: 'https://pancakeswap.creator-spring.com/',
+        label: 'Voting',
+        href: 'https://voting.pantherswap.com/',
       },
     ],
   },

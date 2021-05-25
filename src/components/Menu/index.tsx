@@ -1,40 +1,48 @@
-import React from 'react'
-import { Menu as UikitMenu } from '@pancakeswap/uikit'
+import React, { useContext } from 'react'
+import { Menu as UikitMenu, ConnectorId } from '@pantherswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { languageList } from 'config/localization/languages'
-import { useTranslation } from 'contexts/Localization'
+import { allLanguages } from 'constants/localisation/languageCodes'
+import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
-import useAuth from 'hooks/useAuth'
-import { usePriceCakeBusd, useProfile } from 'state/hooks'
-import config from './config'
+import useGetPriceData from 'hooks/useGetPriceData'
+// import useGetLocalProfile from 'hooks/useGetLocalProfile'
+import { injected, bsc, walletconnect } from 'connectors'
+import links from './config'
 
-const Menu = (props) => {
-  const { account } = useWeb3React()
-  const { login, logout } = useAuth()
+const Menu: React.FC = (props) => {
+  const { account, activate, deactivate } = useWeb3React()
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
-  const { profile } = useProfile()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  const priceData = useGetPriceData()
+
+  const pantherAddress = '0x1f546aD641B56b86fD9dCEAc473d1C7a357276B7'
+  const cakePriceUsd = priceData && priceData.data[pantherAddress] ? Number(priceData.data[pantherAddress].price) : Number(0)
+  // const profile = useGetLocalProfile()
 
   return (
     <UikitMenu
-      account={account}
-      login={login}
-      logout={logout}
+      links={links}
+      account={account as string}
+      login={(connectorId: ConnectorId) => {
+        if (connectorId === 'walletconnect') {
+          return activate(walletconnect)
+        }
+
+        if (connectorId === 'bsc') {
+          return activate(bsc)
+        }
+
+        return activate(injected)
+      }}
+      logout={deactivate}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={currentLanguage.code}
-      langs={languageList}
-      setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
-      links={config(t)}
-      profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
-      }}
+      currentLang={selectedLanguage?.code || ''}
+      langs={allLanguages}
+      setLang={setSelectedLanguage}
+      cakePriceUsd={cakePriceUsd}
+      cakePriceLink={`https://bscscan.com/token/${pantherAddress}`}
+      /* profile={profile} */
       {...props}
     />
   )
